@@ -1,8 +1,8 @@
 <launch>
-  <node pkg="rgbd_calibration" 		type="calibrate_node" name="calibrate_node" output="screen">
-		<param name="checkerboard_rows" 	type="int" 	    value="6" />
-    <param name="checkerboard_cols" 	type="int" 	    value="9" />
-		<param name="folder_path" 	      type="string" 	value="/home/ehambram/Datasets/xtion_calibration" />
-		<param name="check_side_length" 	type="double" 	value="0.023" />
+  <node pkg="rgbd_calibration" 				exec="calibrate_node" name="calibrate_node" output="screen">
+		<param name="checkerboard_rows" 	value="6" />
+    	<param name="checkerboard_cols" 	value="9" />
+		<param name="folder_path" 	      	value="/media/ehambram/Data1/Datasets/xtion_calibration" />
+		<param name="check_side_length" 	value="0.023" />
 	</node>
 </launch>

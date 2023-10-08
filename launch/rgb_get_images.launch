@@ -1,10 +1,9 @@
 <launch>
-  <!--<include file="$(find openni2_launch)/launch/openni2.launch"/>-->
-  <node pkg="rgbd_calibration" 		type="get_calibration_images_node" name="get_calibration_images_node" output="screen">
-		<param name="image_topic" 	      type="string" 	value="/camera/rgb/image_raw" />
-    <param name="checkerboard_rows" 	type="int" 	    value="6" />
-    <param name="checkerboard_cols" 	type="int" 	    value="9" />
-    <param name="folder_path" 	      type="string" 	value="/home/ehambram/Datasets/xtion_calibration/both/rgb" />
-    <param name="capture_frequency" 	type="double" 	value="0.1" />
+  <node pkg="rgbd_calibration" 		    exec="get_calibration_images_node" name="get_calibration_images_node" output="screen">
+		<param name="image_topic" 	      value="/camera/rgb/image_raw" />
+    <param name="checkerboard_rows" 	value="6" />
+    <param name="checkerboard_cols" 	value="9" />
+    <param name="folder_path" 	      value="/media/ehambram/Data1/Datasets/xtion_calibration/test" />
+    <param name="capture_frequency" 	value="0.1" />
 	</node>
 </launch>

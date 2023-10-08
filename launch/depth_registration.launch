@@ -1,5 +1,5 @@
 <launch>
-	<node pkg="rgbd_calibration" 				exec="rgb_depth_registration_node" name="rgb_depth_registration_node" output="screen">
+	<node pkg="rgbd_calibration" 			exec="rgb_depth_registration_node" name="rgb_depth_registration_node" output="screen">
 		<param name="rgb_topic" 	     	value="/camera/rgb/image_raw" />
 		<param name="depth_topic" 	     	value="/camera/depth/image_raw" />
 		<param name="calibration_file" 	 	value="/media/ehambram/Data1/Datasets/xtion_calibration/rgbd_calibration.txt" />

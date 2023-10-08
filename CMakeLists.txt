@@ -34,13 +34,13 @@ include_directories(
   ${PCL_INCLUDE_DIRS}
 )
 
-#add_executable(get_calibration_images_node src/get_calibration_images.cpp)
-#ament_target_dependencies(get_calibration_images_node rclcpp std_msgs cv_bridge sensor_msgs message_filters)
-#target_link_libraries(get_calibration_images_node ${catkin_LIBRARIES} ${OpenCV_LIBS})
+add_executable(get_calibration_images_node src/get_calibration_images.cpp)
+ament_target_dependencies(get_calibration_images_node rclcpp std_msgs cv_bridge sensor_msgs message_filters)
+target_link_libraries(get_calibration_images_node ${OpenCV_LIBS})
 
-#add_executable(calibrate_node src/calibrate.cpp)
-#ament_target_dependencies(calibrate_node rclcpp std_msgs cv_bridge sensor_msgs message_filters)
-#target_link_libraries(calibrate_node ${catkin_LIBRARIES} ${OpenCV_LIBS})
+add_executable(calibrate_node src/calibrate.cpp)
+ament_target_dependencies(calibrate_node rclcpp std_msgs cv_bridge sensor_msgs message_filters)
+target_link_libraries(calibrate_node ${catkin_LIBRARIES} ${OpenCV_LIBS})
 
 add_executable(rgb_depth_registration_node src/rgb_depth_registration.cpp)
 ament_target_dependencies(rgb_depth_registration_node rclcpp std_msgs cv_bridge sensor_msgs message_filters pcl_conversions)
@@ -52,6 +52,8 @@ target_link_libraries(rgb_depth_registration_node ${OpenCV_LIBS} OpenMP::OpenMP_
 
 install(TARGETS
   rgb_depth_registration_node
+  get_calibration_images_node
+  calibrate_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
