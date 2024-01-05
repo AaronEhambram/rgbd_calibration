@@ -2,7 +2,6 @@
 	<node pkg="rgbd_calibration" 			exec="rgb_depth_registration_node" name="rgb_depth_registration_node" output="screen">
 		<param name="rgb_topic" 	     	value="/camera/rgb/image_raw" />
 		<param name="depth_topic" 	     	value="/camera/depth/image_raw" />
-		<param name="calibration_file" 	 	value="/media/ehambram/Data1/Datasets/xtion_calibration/rgbd_calibration.txt" />
+		<param name="calibration_file" 	 	value="$(find-pkg-share rgbd_calibration)/config/rgbd_calibration.txt" />
 	</node>
-	<node pkg="rviz2" exec="rviz2" name="rviz2"/>
 </launch>

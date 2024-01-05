@@ -151,7 +151,7 @@ class PoinCloudGenerator : public rclcpp::Node
         }
       }
       pcl::toROSMsg(cloud, *cloud_msg);
-      cloud_msg->header.frame_id = "camera_rgb_frame";
+      cloud_msg->header.frame_id = "camera_rgb_optical_frame";
       cloud_msg->header.stamp = now();
       publisher_->publish(*cloud_msg);
 
