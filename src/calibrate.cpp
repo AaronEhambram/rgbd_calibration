@@ -68,6 +68,7 @@ class Calibrator : public rclcpp::Node
       file << "ir_dist_coeff" << ir_dist_coeff;
       file << "rgb_R_ir" << rgb_R_ir;
       file << "rgb_t_ir" << rgb_t_ir;
+      std::cout << "Finished calibration." << std::endl;
     }
 
   private:
@@ -164,9 +165,12 @@ class Calibrator : public rclcpp::Node
             // get the IR image
             pair.second = cv::imread(ir_file_paths[ir_counter]);
             cv::cvtColor(pair.second, pair.second, CV_BGR2GRAY);
+
+            std::cout << "Add file pair: " << rgb_file_names[rgb_counter] << std::endl;
           }
         }
       }
+      std::cout << "Pairs found: " << image_pairs.size() << std::endl; 
     }
 
     void calibrate_camera(std::vector<cv::Mat>& images, std::stringstream& calibration_results_file, cv::Mat& cameraMatrix, cv::Mat& distCoeffs)
@@ -259,7 +263,7 @@ class Calibrator : public rclcpp::Node
       t.at<double>(2) = T.matrix()(2,3);
     }
 
-    void average_poses(std::vector<Eigen::Affine3d>& Ts, Eigen::Affine3d T_avrg)
+    void average_poses(std::vector<Eigen::Affine3d>& Ts, Eigen::Affine3d& T_avrg)
     {
       // Average translation
       Eigen::Vector3d t_avrg;
@@ -311,6 +315,7 @@ class Calibrator : public rclcpp::Node
         rgb_success = cv::findChessboardCorners(im_pair.first, checkerboard_size, rgb_corner_pts, cv::CALIB_CB_ADAPTIVE_THRESH | cv::CALIB_CB_FAST_CHECK | cv::CALIB_CB_NORMALIZE_IMAGE);
         ir_corner_pts.clear(); 
         ir_success = cv::findChessboardCorners(im_pair.second, checkerboard_size, ir_corner_pts, cv::CALIB_CB_ADAPTIVE_THRESH | cv::CALIB_CB_FAST_CHECK | cv::CALIB_CB_NORMALIZE_IMAGE);
+        std::cout << "rgb_success: " << rgb_success << "   " << "ir_success: " << ir_success << std::endl; 
         if(rgb_success && ir_success)
         {
           cv::TermCriteria criteria(CV_TERMCRIT_EPS | CV_TERMCRIT_ITER, 30, 0.001);
@@ -334,11 +339,13 @@ class Calibrator : public rclcpp::Node
           cv2eigen(ir_R_board, ir_t_board, ir_T_board);
 
           Eigen::Affine3d rgb_T_ir = rgb_T_board*ir_T_board.inverse();
+          std::cout << "Transform: " << std::endl << rgb_T_ir.matrix() << std::endl; 
           rgb_T_ir_estimates.push_back(rgb_T_ir);
         }
       }
       Eigen::Affine3d rgb_T_ir; 
       average_poses(rgb_T_ir_estimates, rgb_T_ir);
+      std::cout << "Average Pose: " << std::endl << rgb_T_ir.matrix() << std::endl; 
       eigen2cv(rgb_T_ir,R,t); 
     }
 };

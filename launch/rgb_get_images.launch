@@ -3,7 +3,7 @@
 		<param name="image_topic" 	      value="/camera/rgb/image_raw" />
     <param name="checkerboard_rows" 	value="6" />
     <param name="checkerboard_cols" 	value="9" />
-    <param name="folder_path" 	      value="/media/ehambram/Data1/Datasets/xtion_calibration/test" />
+    <param name="folder_path" 	      value="/home/aaron/Pictures/xtion_calibration/rgb" />
     <param name="capture_frequency" 	value="0.1" />
 	</node>
 </launch>

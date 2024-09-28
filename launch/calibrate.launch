@@ -2,7 +2,7 @@
   <node pkg="rgbd_calibration" 				exec="calibrate_node" name="calibrate_node" output="screen">
 		<param name="checkerboard_rows" 	value="6" />
     	<param name="checkerboard_cols" 	value="9" />
-		<param name="folder_path" 	      	value="/media/ehambram/Data1/Datasets/xtion_calibration" />
+		<param name="folder_path" 	      	value="/home/aaron/Pictures/xtion_calibration" />
 		<param name="check_side_length" 	value="0.023" />
 	</node>
 </launch>
