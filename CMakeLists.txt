@@ -9,12 +9,11 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-
 SET(CMAKE_BUILD_TYPE Release)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-#set(OpenCV_DIR "/home/ehambram/workspaces/libraries/opencv/opencv-4.x/install/lib/cmake/opencv4")
-find_package(OpenCV REQUIRED)
+set(OpenCV_DIR "/home/ehambram/workspaces/libraries/opencv/opencv-4.x/install/lib/cmake/opencv-4.10.0-dev")
+find_package(OpenCV 4.10 REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(OpenMP REQUIRED)
 find_package(PCL REQUIRED)
