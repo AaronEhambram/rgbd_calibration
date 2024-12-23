@@ -1,4 +1,5 @@
 <launch>
+	<include file="$(find-pkg-share openni2_camera)/launch/camera_only.launch.py"/>
 	<node pkg="rgbd_calibration" 			exec="rgb_depth_registration_node" name="rgb_depth_registration_node" output="screen">
 		<param name="rgb_topic" 	     	value="/camera/rgb/image_raw" />
 		<param name="depth_topic" 	     	value="/camera/depth/image_raw" />
